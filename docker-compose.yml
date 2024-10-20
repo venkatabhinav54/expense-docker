@@ -1,5 +1,5 @@
 version: "3"
-network:
+networks:
   expene:
 volumes:
   mysql: # docker volume create mysql 
