@@ -1,0 +1,24 @@
+version: "3"
+network:
+  expene:
+volumes:
+  mysql: # docker volume create mysql 
+services:
+  mysql:
+    image: abhinavdocker642/mysql:v1
+    container_name: myql # --name mysql
+    volumes: 
+    - mysql:/var/lib/mysql #-v mysql:/var/lib/mysql
+  backend:
+    image: abhinavdocker642/backend:v1
+    container_name: backend  # --name backend
+    command: sh -c "sleep 5 && node /opt/server/index.js"
+    depends_on:
+    - mysql
+  frontend:
+    image: abhinavdocker642/frontend:v1
+    container_name: frontend
+    ports:
+    - 80:80
+    depends_on:
+    - backend
